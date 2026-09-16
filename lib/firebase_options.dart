@@ -10,8 +10,8 @@ class DefaultFirebaseOptions {
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBNCtw0FC0qC0j5bRg_o336xrdWEbRHz78',
     appId: '1:384503029364:android:1471d82a8f50c3ed2fbb21',
-    messagingSenderId: 'MASUKKAN_SENDER_ID_DI_SINI',
+    messagingSenderId: '384503029364',
     projectId: 'app-wahidiyah',
-    storageBucket: 'app-wahidiyah.appspot.com',
+    storageBucket: 'app-wahidiyah.firebasestorage.app',
   );
 }
