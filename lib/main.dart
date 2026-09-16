@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'screens/beranda_screen.dart';
 import 'screens/kalender_screen.dart';
 import 'screens/pustaka_screen.dart';
+import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Menghidupkan mesin notifikasi & memasang alarm harian
+  final notificationService = NotificationService();
+  await notificationService.init();
+  await notificationService.scheduleDailyDanaBox();
+
   runApp(const WahidiyahApp());
 }
 
@@ -35,7 +42,6 @@ class MainNavigator extends StatefulWidget {
 class _MainNavigatorState extends State<MainNavigator> {
   int _selectedIndex = 0;
   
-  // Daftar 3 Layar Utama
   final List<Widget> _screens = [
     const BerandaScreen(),
     const KalenderScreen(),
