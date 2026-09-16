@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'screens/beranda_screen.dart';
 import 'screens/kalender_screen.dart';
+import 'screens/kegiatan_screen.dart';
 import 'screens/pustaka_screen.dart';
 import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Menghidupkan mesin notifikasi & memasang alarm harian
   final notificationService = NotificationService();
   await notificationService.init();
   await notificationService.scheduleDailyDanaBox();
@@ -42,9 +42,11 @@ class MainNavigator extends StatefulWidget {
 class _MainNavigatorState extends State<MainNavigator> {
   int _selectedIndex = 0;
   
+  // 4 Layar Utama Aplikasi
   final List<Widget> _screens = [
     const BerandaScreen(),
     const KalenderScreen(),
+    const KegiatanScreen(),
     const PustakaScreen(),
   ];
 
@@ -56,6 +58,7 @@ class _MainNavigatorState extends State<MainNavigator> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.green.shade700,
         unselectedItemColor: Colors.grey,
+        type: BottomNavigationBarType.fixed, // Penting agar icon > 3 tidak berantakan
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
@@ -64,6 +67,7 @@ class _MainNavigatorState extends State<MainNavigator> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
           BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label: 'Kalender'),
+          BottomNavigationBarItem(icon: Icon(Icons.event), label: 'Kegiatan'),
           BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: 'Pustaka'),
         ],
       ),
