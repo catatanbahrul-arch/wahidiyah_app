@@ -9,18 +9,19 @@ import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // INI SAKLAR FIREBASE-NYA!
+
+  // SAKLAR FIREBASE
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  
+
   final notificationService = NotificationService();
   await notificationService.init();
   await notificationService.scheduleDailyDanaBox();
 
   runApp(const WahidiyahApp());
 }
+
 
 class WahidiyahApp extends StatelessWidget {
   const WahidiyahApp({super.key});
