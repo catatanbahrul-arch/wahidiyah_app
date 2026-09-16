@@ -25,6 +25,10 @@ jobs:
       - name: Buat Cangkang Android Otomatis
         run: flutter create . --platforms=android
 
+      - name: Suntik Izin Akses Internet
+        run: |
+          sed -i 's/<application/    <uses-permission android:name="android.permission.INTERNET"\/>\n    <application/g' android/app/src/main/AndroidManifest.xml
+
       - name: Download Library
         run: flutter pub get
 
@@ -36,3 +40,4 @@ jobs:
         with:
           name: Aplikasi-Wahidiyah-APK
           path: build/app/outputs/flutter-apk/app-release.apk
+          
