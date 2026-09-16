@@ -1,6 +1,6 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart'; // Tambahan baru
+import 'firebase_options.dart'; // Tambahan baru
 import 'screens/beranda_screen.dart';
 import 'screens/kalender_screen.dart';
 import 'screens/kegiatan_screen.dart';
@@ -9,18 +9,20 @@ import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // SAKLAR FIREBASE
+  
+  // SAKLAR FIREBASE NYALA!
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  
   final notificationService = NotificationService();
   await notificationService.init();
   await notificationService.scheduleDailyDanaBox();
 
   runApp(const WahidiyahApp());
 }
+
+// ... (kode class WahidiyahApp dan MainNavigator di bawahnya biarkan sama seperti sebelumnya) ...
 
 
 class WahidiyahApp extends StatelessWidget {
