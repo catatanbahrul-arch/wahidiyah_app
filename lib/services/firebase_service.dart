@@ -1,12 +1,17 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/pengumuman_model.dart';
 
 class FirebaseService {
-  // KITA MATIKAN MESIN FIREBASE SEMENTARA
-  // final FirebaseFirestore _db = FirebaseFirestore.instance;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Stream<List<Pengumuman>> getPengumumanStream() {
-    // Mengembalikan daftar kosong secara instan tanpa butuh koneksi Firebase
-    return Stream.value([]);
+    // Kita hapus sementara fitur filter (.where) dan urutkan (.orderBy)
+    // agar Firebase tidak meminta "Composite Index"
+    return _db
+        .collection('pengumuman')
+        .snapshots()
+        .map((snapshot) => snapshot.docs
+            .map((doc) => Pengumuman.fromFirestore(doc))
+            .toList());
   }
 }
